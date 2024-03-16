@@ -1,14 +1,14 @@
+import "./style.scss";
+
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
-
-import "./style.scss";
-
 import ContentWrapper from "../../components/contentWrapper/ContentWrapper";
-// import MovieCard from "../../components/movieCard/MovieCard";
+import MovieCard from "../../components/movieCard/MovieCard";
 import Spinner from "../../components/spinner/Spinner";
 import { fetchDataFromApi } from "../../assets/utils/api";
-import {} from "../../assets/no-results.png";
+import noResults from "../../assets/no-results.png";
+import Img from "../../components/lazyLoadImage/Img";
 
 const SearchResult = () => {
     const [data, setData] = useState(null);
@@ -82,9 +82,12 @@ const SearchResult = () => {
                             </InfiniteScroll>
                         </>
                     ) : (
+                      <>
                         <span className="resultNotFound">
                             Sorry, Results not found!
                         </span>
+                        <Img src={noResults}/>
+                      </>
                     )}
                 </ContentWrapper>
             )}
